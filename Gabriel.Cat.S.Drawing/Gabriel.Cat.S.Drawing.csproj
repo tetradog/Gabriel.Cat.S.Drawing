@@ -10,6 +10,7 @@
     <RepositoryUrl>https://github.com/tetradog/Gabriel.Cat.S.Drawing</RepositoryUrl>
     <PackageLicenseUrl>https://github.com/tetradog/Gabriel.Cat.S.Drawing/blob/master/LICENSE.txt</PackageLicenseUrl>
     <Copyright>GNU v3</Copyright>
+    <Version>1.0.0.1</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
