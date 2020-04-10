@@ -11,8 +11,13 @@ namespace Gabriel.Cat.S.Binaris
     {
         public ImageFragmentBinario()
         {
-            base.Partes.Add(ElementoBinario.ElementosTipoAceptado(Serializar.TiposAceptados.PointZ));
-            base.Partes.Add(ElementoBinario.ElementosTipoAceptado(Serializar.TiposAceptados.Bitmap));
+            base.Partes.Add(ElementoBinario.ElementoTipoAceptado(Serializar.TiposAceptados.PointZ));
+            base.Partes.Add(ElementoBinario.ElementoTipoAceptado(Serializar.TiposAceptados.Bitmap));
+        }
+
+        public override ElementoBinario Clon()
+        {
+            return new ImageFragmentBinario();
         }
 
         protected override IList IGetPartsObject(object obj)
