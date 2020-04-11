@@ -16,7 +16,7 @@ namespace Gabriel.Cat.S.Binaris
         }
         protected override byte[] JGetBytes(object obj)
         {
-            Collage collage=obj as Collage;
+            Collage collage = obj as Collage;
             if (collage == null)
                 throw new TipoException();
 
@@ -24,7 +24,7 @@ namespace Gabriel.Cat.S.Binaris
         }
         protected override object JGetObject(MemoryStream bytes)
         {
-            return new Collage(((object[])base.GetObject(bytes)).Casting<ImageFragment>()); 
+            return new Collage(((object[])base.GetObject(bytes)).Casting<ImageFragment>());
         }
     }
 }

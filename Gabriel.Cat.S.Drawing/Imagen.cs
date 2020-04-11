@@ -193,7 +193,7 @@ namespace Gabriel.Cat.S.Drawing
         public Bitmap CrearCollage(Rectangle rctImgResultado)
         {
             const bool ISARGBBMPTOTAL = true;
-            Bitmap bmpTotal = new Bitmap(rctImgResultado.Width, rctImgResultado.Height);
+            Bitmap bmpTotal = new Bitmap(rctImgResultado.Width, rctImgResultado.Height,System.Drawing.Imaging.PixelFormat.Format32bppArgb);
             fragments.SortByQuickSort();//deberia poner los de la Z mas grande los primeros
             unsafe
             {

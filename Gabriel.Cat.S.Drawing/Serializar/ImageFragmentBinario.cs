@@ -22,8 +22,8 @@ namespace Gabriel.Cat.S.Binaris
 
         protected override IList IGetPartsObject(object obj)
         {
-            ImageFragment image=obj as ImageFragment;
-            return new object[] {image.Location,image.Image };
+            ImageFragment image = obj as ImageFragment;
+            return new object[] { image.Location, image.Image };
         }
 
         protected override object JGetObject(MemoryStream bytes)

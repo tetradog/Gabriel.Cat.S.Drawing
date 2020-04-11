@@ -8,7 +8,7 @@ namespace Gabriel.Cat.S.Drawing
     {
         PointZ localizacion;
         ImageBase imagen;
-        bool isVisible;
+
         protected ImageFragment()
         { }
         public ImageFragment(Bitmap imagen, int x = 0, int y = 0, int z = 0)
@@ -27,23 +27,14 @@ namespace Gabriel.Cat.S.Drawing
                 throw new NullReferenceException("La imagen no puede ser null");
             this.imagen = new ImageBase(imagen);
             Location = localizacion;
+            IsVisible = true;
         }
 
         public virtual byte[] RgbValues
         {
             get { return imagen.Array; }
         }
-        public bool IsVisible
-        {
-            get
-            {
-                return isVisible;
-            }
-            set
-            {
-                isVisible = value;
-            }
-        }
+        public bool IsVisible { get; set; }
         public PointZ Location
         {
             get
