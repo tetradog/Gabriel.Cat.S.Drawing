@@ -36,7 +36,7 @@ namespace Gabriel.Cat.S.Drawing
                 return CrearCollage();
             }
         }
-        public override byte[] RgbValues
+        public override byte[] ArgbValues
         {
             get
             {
@@ -192,8 +192,7 @@ namespace Gabriel.Cat.S.Drawing
         }
         public Bitmap CrearCollage(Rectangle rctImgResultado)
         {
-            const bool ISARGBBMPTOTAL = true;
-            Bitmap bmpTotal = new Bitmap(rctImgResultado.Width, rctImgResultado.Height,System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            Bitmap bmpTotal = new Bitmap(rctImgResultado.Width, rctImgResultado.Height,ImageBase.DefaultPixelFormat);
             fragments.SortByQuickSort();//deberia poner los de la Z mas grande los primeros
             unsafe
             {
@@ -203,8 +202,8 @@ namespace Gabriel.Cat.S.Drawing
                     {
                         if (fragments[i].IsVisible)
                         {
-                            fixed (byte* ptFragmento = fragments[i].RgbValues)
-                                Gabriel.Cat.S.Extension.BitmapExtension.SetFragment(ptTotal, bmpTotal.Height, bmpTotal.Width, ISARGBBMPTOTAL, ptFragmento, fragments[i].Image.Height, fragments[i].Image.Width, ImageBase.ISARGB, rctImgResultado.GetRelativePoint(new Point(fragments[i].Location.X, fragments[i].Location.Y)));
+                            fixed (byte* ptFragmento = fragments[i].ArgbValues)
+                                BitmapExtension.SetFragment(ptTotal, bmpTotal.Height, bmpTotal.Width, ImageBase.ISARGB, ptFragmento, fragments[i].Image.Height, fragments[i].Image.Width, ImageBase.ISARGB, rctImgResultado.GetRelativePoint(new Point(fragments[i].Location.X, fragments[i].Location.Y)));
                         }
                     }
 

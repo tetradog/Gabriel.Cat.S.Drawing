@@ -18,15 +18,14 @@ namespace Gabriel.Cat.S.Drawing
             if (bmp == null)
                 throw new NullReferenceException("La imagen no puede ser null");
             this.bmp = bmp.Clone(new Rectangle(new Point(), bmp.Size), DefaultPixelFormat);//asi todos tienen el mismo PixelFormat :)
-
+            bmpArray = bmp.GetBytes();
         }
 
         public virtual byte[] Array
         {
             get
             {
-                if (bmpArray == null)
-                    bmpArray = bmp.GetBytes();
+                   
                 return bmpArray;
             }
             set

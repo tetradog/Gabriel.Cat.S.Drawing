@@ -17,7 +17,7 @@ namespace Gabriel.Cat.S.Drawing
 
         }
         public ImageFragment(Bitmap imagen, Point localizacion, int capa = 0)
-            : this(imagen, new PointZ(localizacion != default(Point) ? localizacion.X : 0, localizacion != default(Point) ? localizacion.Y : 0, capa))
+            : this(imagen, new PointZ(localizacion.X , localizacion.Y , capa))
         {
 
         }
@@ -30,7 +30,7 @@ namespace Gabriel.Cat.S.Drawing
             IsVisible = true;
         }
 
-        public virtual byte[] RgbValues
+        public virtual byte[] ArgbValues
         {
             get { return imagen.Array; }
         }
