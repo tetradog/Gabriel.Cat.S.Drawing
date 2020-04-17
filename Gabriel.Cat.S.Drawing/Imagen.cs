@@ -17,12 +17,14 @@ namespace Gabriel.Cat.S.Drawing
         Sepia,
         Inverted
     }
+    delegate int GetPosicion(ImageFragment fragment);
     public class Collage : ImageFragment, IEnumerable<ImageFragment>
     {
         Llista<ImageFragment> fragments;
-
+        Bitmap bmp;
         public Collage()
         {
+            bmp = default;
             fragments = new Llista<ImageFragment>();
         }
         public Collage(IList<ImageFragment> imgsCollage) : this()
@@ -33,7 +35,9 @@ namespace Gabriel.Cat.S.Drawing
         {
             get
             {
-                return CrearCollage();
+                if (bmp == default)
+                    CrearCollage();
+                return bmp;
             }
         }
         public override byte[] ArgbValues
@@ -188,30 +192,48 @@ namespace Gabriel.Cat.S.Drawing
             }
             width = xFinal - xInicial;
             height = yFinal - yInicial;
-            return CrearCollage(new Rectangle(xInicial, yInicial, width, height));
+            bmp= CrearCollage(new Rectangle(xInicial, yInicial, width, height));
+            return bmp;
         }
         public Bitmap CrearCollage(Rectangle rctImgResultado)
         {
-            Bitmap bmpTotal = new Bitmap(rctImgResultado.Width, rctImgResultado.Height,ImageBase.DefaultPixelFormat);
+            Rectangle rctBase;
+            Bitmap bmpTotal=new Bitmap(rctImgResultado.Width,rctImgResultado.Height,ImageBase.DefaultPixelFormat);//tiene que caber todo en la imagen
             fragments.SortByQuickSort();//deberia poner los de la Z mas grande los primeros
-            unsafe
+            if (fragments.Count > 0)
             {
-
-                bmpTotal.TrataBytes((ptTotal) => {
-                    for (int i = 0; i < fragments.Count; i++)
-                    {
-                        if (fragments[i].IsVisible)
-                        {
-                            fixed (byte* ptFragmento = fragments[i].ArgbValues)
-                                BitmapExtension.SetFragment(ptTotal, bmpTotal.Height, bmpTotal.Width, ImageBase.ISARGB, ptFragmento, fragments[i].Image.Height, fragments[i].Image.Width, ImageBase.ISARGB, rctImgResultado.GetRelativePoint(new Point(fragments[i].Location.X, fragments[i].Location.Y)));
-                        }
-                    }
-
-
-                });
+                rctBase = new Rectangle(GetXMasPequeña(), GetYMasPequeña(), fragments[0].Image.Width, fragments[0].Image.Height);
+                bmpTotal.SetFragment(fragments[0].Image,rctBase.Location);
+                for (int i = 1; i < fragments.Count; i++)//todo se basa en la imagen base del fondo osea es relativo a él
+                    bmpTotal.SetFragment(fragments[i].Image, rctBase.GetRelativePoint(new Point(fragments[i].Location.X, fragments[i].Location.Y)));
             }
+            bmp = bmpTotal;
             return bmpTotal;
         }
+
+        private int GetYMasPequeña()
+        {
+            return GetComun((f) => f.Location.Y);
+        }
+
+        private int GetXMasPequeña()
+        {
+            return GetComun((f) => f.Location.X);
+        }
+        private int GetComun(GetPosicion getPosicion)
+        {
+            int pos = 0;
+            int aux;
+            fragments.SortByBubble();
+            for(int i=0;i<fragments.Count;i++)
+            {
+                aux = getPosicion(fragments[i]);
+                if (aux < pos)
+                    pos = aux;
+            }
+            return -pos;
+        }
+
         public IEnumerator<ImageFragment> GetEnumerator()
         {
             fragments.SortByBubble();
