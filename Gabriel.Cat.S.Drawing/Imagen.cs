@@ -182,8 +182,8 @@ namespace Gabriel.Cat.S.Drawing
 
         public Bitmap CrearCollage()
         {
-            int xFinal = 1, xInicial = 0;
-            int yFinal = 1, yInicial = 0;
+            int xFinal = Base.Image.Width, xInicial = 0;
+            int yFinal = Base.Image.Height, yInicial = 0;
             int width, height;
             for (int i = 0; i < fragments.Count; i++)
             {
