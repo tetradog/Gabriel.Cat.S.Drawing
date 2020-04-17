@@ -280,20 +280,17 @@ namespace Gabriel.Cat.S.Drawing
                         ptrBmpFragmento++;
                     }
                 }
-                else if (*ptrBmpFragmento == TRANSPARENTE)
-                {//me lo salto porque es transparente
-                    ptrBmpFragmento += ARGB;
-                    ptrBmpTotal += RGB;
-                }
                 else
                 {
-                    //tengo que mezclarlo
-                    aux = MezclaPixels(*(ptrBmpTotal + R), *(ptrBmpTotal + G), *(ptrBmpTotal + B), SINTRANSPARENCIA, *(ptrBmpFragmento + R), *(ptrBmpFragmento + G), *(ptrBmpFragmento + B), *(ptrBmpFragmento + A));
-                   
-                    *(ptrBmpTotal + R) = aux.R;
-                    *(ptrBmpTotal + G) = aux.G;
-                    *(ptrBmpTotal + B) = aux.B;
+                    if (*ptrBmpFragmento != TRANSPARENTE)//si no es transparente es que tengo que mezclarlo sino es que lo tengo que saltar :D
+                    {
+                        //tengo que mezclarlo
+                        aux = MezclaPixels(*(ptrBmpTotal + R), *(ptrBmpTotal + G), *(ptrBmpTotal + B), SINTRANSPARENCIA, *(ptrBmpFragmento + R), *(ptrBmpFragmento + G), *(ptrBmpFragmento + B), *(ptrBmpFragmento + A));
 
+                        *(ptrBmpTotal + R) = aux.R;
+                        *(ptrBmpTotal + G) = aux.G;
+                        *(ptrBmpTotal + B) = aux.B;
+                    }
 
                     ptrBmpTotal += RGB;
                     ptrBmpFragmento += ARGB;
@@ -345,17 +342,18 @@ namespace Gabriel.Cat.S.Drawing
                         ptrBmpFragmento++;
                     }
                 }
-                else if (*ptrBmpFragmento == TRANSPARENTE) { ptrBmpTotal += ARGB; ptrBmpFragmento += ARGB; }
                 else
                 {
-                    //tengo que mezclarlo
-                    aux = MezclaPixels(*(ptrBmpTotal + R), *(ptrBmpTotal + G), *(ptrBmpTotal + B), *(ptrBmpTotal + A), *(ptrBmpFragmento + R), *(ptrBmpFragmento + G), *(ptrBmpFragmento + B), *(ptrBmpFragmento + A));
-                  
-                    *(ptrBmpTotal + A) = aux.A;
-                    *(ptrBmpTotal + R) = aux.R;
-                    *(ptrBmpTotal + G) = aux.G;
-                    *(ptrBmpTotal + B) = aux.B;
+                    if (*ptrBmpFragmento != TRANSPARENTE)
+                    {
+                        //tengo que mezclarlo
+                        aux = MezclaPixels(*(ptrBmpTotal + R), *(ptrBmpTotal + G), *(ptrBmpTotal + B), *(ptrBmpTotal + A), *(ptrBmpFragmento + R), *(ptrBmpFragmento + G), *(ptrBmpFragmento + B), *(ptrBmpFragmento + A));
 
+                        *(ptrBmpTotal + A) = aux.A;
+                        *(ptrBmpTotal + R) = aux.R;
+                        *(ptrBmpTotal + G) = aux.G;
+                        *(ptrBmpTotal + B) = aux.B;
+                    }
 
                     ptrBmpTotal += ARGB;
                     ptrBmpFragmento += ARGB;
