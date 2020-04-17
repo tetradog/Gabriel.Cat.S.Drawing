@@ -10,7 +10,7 @@
     <RepositoryUrl>https://github.com/tetradog/Gabriel.Cat.S.Drawing</RepositoryUrl>
     <PackageLicenseUrl>https://github.com/tetradog/Gabriel.Cat.S.Drawing/blob/master/LICENSE.txt</PackageLicenseUrl>
     <Copyright>GNU v3</Copyright>
-    <Version>1.0.0.2-preview1.0.2</Version>
+    <Version>1.0.0.2-preview1.0.3</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -24,7 +24,7 @@
 
   <ItemGroup>
     <PackageReference Include="Gabriel.Cat.S.Binaris" Version="1.1.1" />
-    <PackageReference Include="Gabriel.Cat.S.Utilitats" Version="1.0.4.4-preview1.1.2" />
+    <PackageReference Include="Gabriel.Cat.S.Utilitats" Version="1.0.4.4-preview1.1.4" />
     <PackageReference Include="System.Drawing.Common" Version="5.0.0-preview.2.20160.6" />
   </ItemGroup>
 

@@ -22,8 +22,10 @@ namespace Gabriel.Cat.S.Drawing
     {
         Llista<ImageFragment> fragments;
         Bitmap bmp;
+
         public Collage()
         {
+            Base = new ImageBase(new Bitmap(1,1));
             bmp = default;
             fragments = new Llista<ImageFragment>();
         }
@@ -47,6 +49,10 @@ namespace Gabriel.Cat.S.Drawing
                 return Image.GetBytes();
             }
         }
+        /// <summary>
+        /// Es la imagen donde las demás se posicionarán
+        /// </summary>
+        public ImageBase Base { get; set; }
         public int Count
         {
             get { return fragments.Count; }
@@ -192,20 +198,20 @@ namespace Gabriel.Cat.S.Drawing
             }
             width = xFinal - xInicial;
             height = yFinal - yInicial;
-            bmp= CrearCollage(new Rectangle(xInicial, yInicial, width, height));
+            bmp = CrearCollage(new Rectangle(0, 0, width, height));
             return bmp;
         }
         public Bitmap CrearCollage(Rectangle rctImgResultado)
         {
-            Rectangle rctBase;
-            Bitmap bmpTotal=new Bitmap(rctImgResultado.Width,rctImgResultado.Height,ImageBase.DefaultPixelFormat);//tiene que caber todo en la imagen
+            Rectangle rctBase;//no se porque pero me recorta la imagen!!
+            Bitmap bmpTotal = new Bitmap(rctImgResultado.Width, rctImgResultado.Height, ImageBase.DefaultPixelFormat);//tiene que caber todo en la imagen
             fragments.SortByQuickSort();//deberia poner los de la Z mas grande los primeros
             if (fragments.Count > 0)
             {
-                rctBase = new Rectangle(GetXMasPequeña(), GetYMasPequeña(), fragments[0].Image.Width, fragments[0].Image.Height);
-                bmpTotal.SetFragment(fragments[0].Image,rctBase.Location);
-                for (int i = 1; i < fragments.Count; i++)//todo se basa en la imagen base del fondo osea es relativo a él
-                    bmpTotal.SetFragment(fragments[i].Image, rctBase.GetRelativePoint(new Point(fragments[i].Location.X, fragments[i].Location.Y)));
+                rctBase = new Rectangle(GetXMasPequeña(), GetYMasPequeña(), Base.Image.Width, Base.Image.Height);
+                bmpTotal.SetFragment(Base.Image, rctBase.Location);
+                for (int i = 0; i < fragments.Count; i++)//todo se basa en la imagen base del fondo osea es relativo a él
+                    bmpTotal.SetFragment(fragments[i].Image, rctBase.RelativeToAbsolute(new Point(fragments[i].Location.X, fragments[i].Location.Y)));
             }
             bmp = bmpTotal;
             return bmpTotal;
@@ -225,7 +231,7 @@ namespace Gabriel.Cat.S.Drawing
             int pos = 0;
             int aux;
             fragments.SortByBubble();
-            for(int i=0;i<fragments.Count;i++)
+            for (int i = 0; i < fragments.Count; i++)
             {
                 aux = getPosicion(fragments[i]);
                 if (aux < pos)
@@ -244,7 +250,7 @@ namespace Gabriel.Cat.S.Drawing
         {
             return GetEnumerator();
         }
-        
+
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();

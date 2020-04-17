@@ -34,6 +34,10 @@ namespace Gabriel.Cat.S.Drawing
         {
             return ToSepia(pixel.R, pixel.G, pixel.B);
         }
+        public static Color Mezclar(this Utilitats.V2.Color pixel1, Utilitats.V2.Color pixel2)
+        {
+            return MezclaPixels(pixel1.Red, pixel1.Green, pixel1.Blue, pixel1.Alfa, pixel2.Red, pixel2.Green, pixel2.Blue, pixel2.Alfa);
+        }
         public static Color Mezclar(this Color pixel1, Color pixel2)
         {
             return MezclaPixels(pixel1.R, pixel1.G, pixel1.B, pixel1.A, pixel2.R, pixel2.G, pixel2.B, pixel2.A);
