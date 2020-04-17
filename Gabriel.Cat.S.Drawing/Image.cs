@@ -265,12 +265,14 @@ namespace Gabriel.Cat.S.Drawing
             const byte TRANSPARENTE = 0x0;
             const int RGB = 3;
             const int ARGB = RGB + 1;
-            const int R = 1, G = R + 1, B = G + 1, A = B + 1;
+            const int R = 0, G = R + 1, B = G + 1, A = B + 1;
             Color aux;
+            byte* ptSinTransparencia;
             for (int j = 0; j < totalPixelesLinea; j++)
             {
+                ptSinTransparencia = ptrBmpFragmento + A;
                 //pongo cada pixel
-                if (*ptrBmpFragmento == SINTRANSPARENCIA)
+                if (*ptSinTransparencia == SINTRANSPARENCIA)
                 {
                     ptrBmpFragmento++;//me salto el byte de la transparencia porque la imagenTotal no tiene
                     for (int k = 0; k < RGB; k++)
@@ -282,7 +284,7 @@ namespace Gabriel.Cat.S.Drawing
                 }
                 else
                 {
-                    if (*ptrBmpFragmento != TRANSPARENTE)//si no es transparente es que tengo que mezclarlo sino es que lo tengo que saltar :D
+                    if (*ptSinTransparencia != TRANSPARENTE)//si no es transparente es que tengo que mezclarlo sino es que lo tengo que saltar :D
                     {
                         //tengo que mezclarlo
                         aux = MezclaPixels(*(ptrBmpTotal + R), *(ptrBmpTotal + G), *(ptrBmpTotal + B), SINTRANSPARENCIA, *(ptrBmpFragmento + R), *(ptrBmpFragmento + G), *(ptrBmpFragmento + B), *(ptrBmpFragmento + A));
@@ -325,14 +327,15 @@ namespace Gabriel.Cat.S.Drawing
             const byte TRANSPARENTE = 0x0;
             const int RGB = 3;
             const int ARGB = RGB + 1;
-            const int R = 1, G = R + 1, B = G + 1, A = B + 1;
+            const int R =0, G = R + 1, B = G + 1, A = B + 1;
             Color aux;
             bool isArgb = bytesPixel == ARGB;
-
+            byte* ptSinTransparencia;
             //pongo cada pixel
             for (int j = 0; j < totalPixelesLinea; j++)
             {
-                if (!isArgb || *ptrBmpFragmento == SINTRANSPARENCIA)
+                ptSinTransparencia = ptrBmpFragmento + A;
+                if (!isArgb || *ptSinTransparencia == SINTRANSPARENCIA)
                 {
                     //pongo cada byte
                     for (int k = 0; k < bytesPixel; k++)
@@ -344,7 +347,7 @@ namespace Gabriel.Cat.S.Drawing
                 }
                 else
                 {
-                    if (*ptrBmpFragmento != TRANSPARENTE)
+                    if (*ptSinTransparencia != TRANSPARENTE)
                     {
                         //tengo que mezclarlo
                         aux = MezclaPixels(*(ptrBmpTotal + R), *(ptrBmpTotal + G), *(ptrBmpTotal + B), *(ptrBmpTotal + A), *(ptrBmpFragmento + R), *(ptrBmpFragmento + G), *(ptrBmpFragmento + B), *(ptrBmpFragmento + A));
