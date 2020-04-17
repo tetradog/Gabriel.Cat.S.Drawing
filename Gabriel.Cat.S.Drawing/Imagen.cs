@@ -206,13 +206,12 @@ namespace Gabriel.Cat.S.Drawing
             Rectangle rctBase;//no se porque pero me recorta la imagen!!
             Bitmap bmpTotal = new Bitmap(rctImgResultado.Width, rctImgResultado.Height, ImageBase.DefaultPixelFormat);//tiene que caber todo en la imagen
             fragments.SortByQuickSort();//deberia poner los de la Z mas grande los primeros
-            if (fragments.Count > 0)
-            {
+
                 rctBase = new Rectangle(GetXMasPequeña(), GetYMasPequeña(), Base.Image.Width, Base.Image.Height);
                 bmpTotal.SetFragment(Base.Image, rctBase.Location);
                 for (int i = 0; i < fragments.Count; i++)//todo se basa en la imagen base del fondo osea es relativo a él
                     bmpTotal.SetFragment(fragments[i].Image, rctBase.RelativeToAbsolute(new Point(fragments[i].Location.X, fragments[i].Location.Y)));
-            }
+          
             bmp = bmpTotal;
             return bmpTotal;
         }
