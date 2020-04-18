@@ -1,4 +1,5 @@
-﻿using Gabriel.Cat.S.Extension;
+﻿using Gabriel.Cat.S.Binaris;
+using Gabriel.Cat.S.Extension;
 using Gabriel.Cat.S.Utilitats;
 using System;
 using System.Collections;
@@ -22,12 +23,22 @@ namespace Gabriel.Cat.S.Drawing
     {
         Llista<ImageFragment> fragments;
         Bitmap bmp;
+        byte[] bmpArgb;
 
+        static Collage()
+        {
+            ElementoBinario.SerializadoresTiposNoSoportados.Add(typeof(Collage).AssemblyQualifiedName, new CollageBinario());
+        }
         public Collage()
         {
-            Base = new ImageBase(new Bitmap(1,1));
+            bmpArgb = default;
             bmp = default;
+            Base = new ImageBase();
             fragments = new Llista<ImageFragment>();
+        }
+        public Collage(ImageFragment imgCollage) : this()
+        { 
+            fragments.Add(imgCollage); 
         }
         public Collage(IList<ImageFragment> imgsCollage) : this()
         {
@@ -38,7 +49,10 @@ namespace Gabriel.Cat.S.Drawing
             get
             {
                 if (bmp == default)
+                {
                     CrearCollage();
+                    bmpArgb = default;
+                }
                 return bmp;
             }
         }
@@ -46,7 +60,10 @@ namespace Gabriel.Cat.S.Drawing
         {
             get
             {
-                return Image.GetBytes();
+                if(bmpArgb==default)
+                      bmpArgb= Image.GetBytes();
+
+                return bmpArgb;
             }
         }
         /// <summary>
@@ -198,34 +215,41 @@ namespace Gabriel.Cat.S.Drawing
             }
             width = xFinal - xInicial;
             height = yFinal - yInicial;
-            bmp = CrearCollage(new Rectangle(0, 0, width, height));
+            bmp = CrearCollage(new Size(width, height));
             return bmp;
         }
-        public Bitmap CrearCollage(Rectangle rctImgResultado)
+        public Bitmap CrearCollage(Size sizeTotal)
         {
             Rectangle rctBase;//no se porque pero me recorta la imagen!!
-            Bitmap bmpTotal = new Bitmap(rctImgResultado.Width, rctImgResultado.Height, ImageBase.DefaultPixelFormat);//tiene que caber todo en la imagen
+            Bitmap bmpTotal = new Bitmap(sizeTotal.Width, sizeTotal.Height, ImageBase.DefaultPixelFormat);//tiene que caber todo en la imagen
+
             fragments.SortByQuickSort();//deberia poner los de la Z mas grande los primeros
 
-                rctBase = new Rectangle(GetXMasPequeña(), GetYMasPequeña(), Base.Image.Width, Base.Image.Height);
-                bmpTotal.SetFragment(Base.Image, rctBase.Location);
-                for (int i = 0; i < fragments.Count; i++)//todo se basa en la imagen base del fondo osea es relativo a él
-                    bmpTotal.SetFragment(fragments[i].Image, rctBase.RelativeToAbsolute(new Point(fragments[i].Location.X, fragments[i].Location.Y)));
-          
+            if (Base == default)
+                Base = new ImageBase();
+
+            rctBase = new Rectangle(GetMinLocation((f) => f.Location.X), GetMinLocation((f) => f.Location.Y), Base.Image.Width, Base.Image.Height);
+
+
+            bmpTotal.TrataBytes((MetodoTratarByteArray)((bmpTotalArray) =>
+                {
+
+                    Imagen.SetFragment(bmpTotalArray, bmpTotal.Size, ImageBase.ISARGB, Base.Array, Base.Image.Size, ImageBase.ISARGB, rctBase.Location);
+
+                    for (int i = 0; i < fragments.Count; i++)
+                        if (fragments[i].IsVisible)
+                        {
+
+                            Imagen.SetFragment(bmpTotalArray, bmpTotal.Size, ImageBase.ISARGB, fragments[i].ArgbValues, fragments[i].Image.Size, ImageBase.ISARGB, rctBase.RelativeToAbsolute(new Point(fragments[i].Location.X, fragments[i].Location.Y)));
+                        }
+                }));
+
+
             bmp = bmpTotal;
-            return bmpTotal;
+            return bmp;
         }
 
-        private int GetYMasPequeña()
-        {
-            return GetComun((f) => f.Location.Y);
-        }
-
-        private int GetXMasPequeña()
-        {
-            return GetComun((f) => f.Location.X);
-        }
-        private int GetComun(GetPosicion getPosicion)
+        private int GetMinLocation(GetPosicion getPosicion)
         {
             int pos = 0;
             int aux;
@@ -236,7 +260,7 @@ namespace Gabriel.Cat.S.Drawing
                 if (aux < pos)
                     pos = aux;
             }
-            return -pos;
+            return Math.Abs(pos);
         }
 
         public IEnumerator<ImageFragment> GetEnumerator()

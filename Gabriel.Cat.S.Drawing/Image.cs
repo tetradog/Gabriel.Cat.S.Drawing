@@ -1,14 +1,41 @@
 ﻿using Gabriel.Cat.S.Extension;
+using Gabriel.Cat.S.Utilitats;
 using System;
 using System.Drawing;
 
-namespace Gabriel.Cat.S.Drawing
+namespace Gabriel.Cat.S.Extension
 {
-    public static class Image
+    public static class Imagen
     {
 
 
         #region Pixels
+        public static Color ToRed(this Utilitats.V2.Color pixel)
+        {
+            return ToRed(pixel.Red, 0, 0);
+
+        }
+        public static Color ToBlue(this Utilitats.V2.Color pixel)
+        {
+            return ToBlue(0, 0, pixel.Blue);
+        }
+        public static Color ToGreen(this Utilitats.V2.Color pixel)
+        {
+            return ToGreen(0, pixel.Green, 0);
+        }
+        public static Color ToEscalaGrises(this Utilitats.V2.Color pixel)
+        {
+            return ToGrayScale(pixel.Red, pixel.Green, pixel.Blue);
+
+        }
+        public static Color ToInverted(this Utilitats.V2.Color pixel)
+        {
+            return ToInverted((byte)(255 - pixel.Red), (byte)(255 - pixel.Green), (byte)(255 - pixel.Blue));
+        }
+        public static Color ToSepia(this Utilitats.V2.Color pixel)
+        {
+            return ToSepia(pixel.Red, pixel.Green, pixel.Blue);
+        }
         public static Color ToRed(this Color pixel)
         {
             return ToRed(pixel.R, 0, 0);
@@ -53,9 +80,9 @@ namespace Gabriel.Cat.S.Drawing
             if (byteABack != MIN && byteAFore != MIN)
             {//si los dos no son transparentes los mezclo
                 alpha = byteAFore + 1;
-                b = alpha * byteBFore + (MAX - alpha) * byteBBack >> 8;
-                g = alpha * byteGFore + (MAX - alpha) * byteGBack >> 8;
-                r = alpha * byteRFore + (MAX - alpha) * byteRBack >> 8;
+                b = Math.Abs(alpha * byteBFore + (MAX - alpha) * byteBBack >> 8);
+                g = Math.Abs(alpha * byteGFore + (MAX - alpha) * byteGBack >> 8);
+                r = Math.Abs(alpha * byteRFore + (MAX - alpha) * byteRBack >> 8);
                 a = byteAFore;
 
                 if (byteABack == MAX)
@@ -130,7 +157,77 @@ namespace Gabriel.Cat.S.Drawing
 
         #endregion
 
-        #region SetFragment por acabar
+        #region SetFragment 
+        #region Sobrecarga
+        public static unsafe void SetFragment(byte[] bmpTotal, Size sizeTotal, bool bmpTotalIsArgb, byte* bmpFragmentoInicio, Size sizeFragment, bool bmpFragmentoIsArgb, Utilitats.PointZ posicionFragmento)
+        {
+            fixed (byte* bmpTotalInicio = bmpTotal)
+                SetFragment(bmpTotalInicio, sizeTotal.Height, sizeTotal.Width, bmpTotalIsArgb, bmpFragmentoInicio, sizeFragment.Height, sizeFragment.Width, bmpFragmentoIsArgb, new Point(posicionFragmento.X, posicionFragmento.Y));
+        }
+        public static unsafe void SetFragment(byte[] bmpTotal, int alturaBmpTotal, int anchuraBmpTotal, bool bmpTotalIsArgb, byte* bmpFragmentoInicio, int alturaBmpFragmento, int anchuraBmpFragmento, bool bmpFragmentoIsArgb, Utilitats.PointZ posicionFragmento)
+        {
+            fixed (byte* bmpTotalInicio = bmpTotal)
+                SetFragment(bmpTotalInicio, alturaBmpTotal, anchuraBmpTotal, bmpTotalIsArgb, bmpFragmentoInicio, alturaBmpFragmento, anchuraBmpFragmento, bmpFragmentoIsArgb, new Point(posicionFragmento.X, posicionFragmento.Y));
+        }
+        public static unsafe void SetFragment(byte[] bmpTotal, Size sizeTotal, bool bmpTotalIsArgb, byte* bmpFragmentoInicio, Size sizeFragment, bool bmpFragmentoIsArgb, System.Drawing.Point posicionFragmento)
+        {
+            fixed (byte* bmpTotalInicio = bmpTotal)
+                SetFragment(bmpTotalInicio, sizeTotal.Height, sizeTotal.Width, bmpTotalIsArgb, bmpFragmentoInicio, sizeFragment.Height, sizeFragment.Width, bmpFragmentoIsArgb, posicionFragmento);
+        }
+        public static void SetFragment(byte[] bmpTotal, Size sizeTotal, bool bmpTotalIsArgb, byte[] bmpFragmento, Size sizeFragment, bool bmpFragmentoIsArgb, Utilitats.PointZ posicionFragmento)
+        {
+            unsafe
+            {
+                fixed (byte* bmpTotalInicio = bmpTotal)
+                    SetFragment(bmpTotalInicio, sizeTotal.Height, sizeTotal.Width, bmpTotalIsArgb, bmpFragmento, sizeFragment.Height, sizeFragment.Width, bmpFragmentoIsArgb, posicionFragmento);
+            }
+        }
+        public static void SetFragment(byte[] bmpTotal, int alturaBmpTotal, int anchuraBmpTotal, bool bmpTotalIsArgb, byte[] bmpFragmento, int alturaBmpFragmento, int anchuraBmpFragmento, bool bmpFragmentoIsArgb, Utilitats.PointZ posicionFragmento)
+        {
+            unsafe
+            {
+                fixed (byte* bmpTotalInicio = bmpTotal)
+                    SetFragment(bmpTotalInicio, alturaBmpTotal, anchuraBmpTotal, bmpTotalIsArgb, bmpFragmento, alturaBmpFragmento, anchuraBmpFragmento, bmpFragmentoIsArgb, posicionFragmento);
+            }
+        }
+        public static void SetFragment(byte[] bmpTotal, Size sizeTotal, bool bmpTotalIsArgb, byte[] bmpFragmento, Size sizeFragment, bool bmpFragmentoIsArgb, System.Drawing.Point posicionFragmento)
+        {
+            unsafe
+            {
+                fixed (byte* bmpTotalInicio = bmpTotal)
+                    SetFragment(bmpTotalInicio, sizeTotal, bmpTotalIsArgb, bmpFragmento, sizeFragment, bmpFragmentoIsArgb, posicionFragmento);
+            }
+        }
+        public static unsafe void SetFragment(byte* bmpTotalInicio, Size sizeTotal, bool bmpTotalIsArgb, byte[] bmpFragmento, Size sizeFragment, bool bmpFragmentoIsArgb, Utilitats.PointZ posicionFragmento)
+        {
+            fixed (byte* bmpFragmentoInicio = bmpFragmento)
+                SetFragment(bmpTotalInicio, sizeTotal.Height, sizeTotal.Width, bmpTotalIsArgb, bmpFragmentoInicio, sizeFragment.Height, sizeFragment.Width, bmpFragmentoIsArgb, new Point(posicionFragmento.X, posicionFragmento.Y));
+        }
+        public static unsafe void SetFragment(byte* bmpTotalInicio, int alturaBmpTotal, int anchuraBmpTotal, bool bmpTotalIsArgb, byte[] bmpFragmento, int alturaBmpFragmento, int anchuraBmpFragmento, bool bmpFragmentoIsArgb, Utilitats.PointZ posicionFragmento)
+        {
+            fixed (byte* bmpFragmentoInicio = bmpFragmento)
+                SetFragment(bmpTotalInicio, alturaBmpTotal, anchuraBmpTotal, bmpTotalIsArgb, bmpFragmentoInicio, alturaBmpFragmento, anchuraBmpFragmento, bmpFragmentoIsArgb, new Point(posicionFragmento.X, posicionFragmento.Y));
+        }
+        public static unsafe void SetFragment(byte* bmpTotalInicio, Size sizeTotal, bool bmpTotalIsArgb, byte[] bmpFragmento, Size sizeFragment, bool bmpFragmentoIsArgb, System.Drawing.Point posicionFragmento)
+        {
+            fixed (byte* bmpFragmentoInicio = bmpFragmento)
+                SetFragment(bmpTotalInicio, sizeTotal.Height, sizeTotal.Width, bmpTotalIsArgb, bmpFragmentoInicio, sizeFragment.Height, sizeFragment.Width, bmpFragmentoIsArgb, posicionFragmento);
+        }
+
+        public static unsafe void SetFragment(byte* bmpTotalInicio, Size sizeTotal, bool bmpTotalIsArgb, byte* bmpFragmentoInicio, Size sizeFragment, bool bmpFragmentoIsArgb, Utilitats.PointZ posicionFragmento)
+        {
+            SetFragment(bmpTotalInicio, sizeTotal.Height, sizeTotal.Width, bmpTotalIsArgb, bmpFragmentoInicio, sizeFragment.Height, sizeFragment.Width, bmpFragmentoIsArgb, new Point(posicionFragmento.X, posicionFragmento.Y));
+        }
+        public static unsafe void SetFragment(byte* bmpTotalInicio, int alturaBmpTotal, int anchuraBmpTotal, bool bmpTotalIsArgb, byte* bmpFragmentoInicio, int alturaBmpFragmento, int anchuraBmpFragmento, bool bmpFragmentoIsArgb, Utilitats.PointZ posicionFragmento)
+        {
+            SetFragment(bmpTotalInicio, alturaBmpTotal, anchuraBmpTotal, bmpTotalIsArgb, bmpFragmentoInicio, alturaBmpFragmento, anchuraBmpFragmento, bmpFragmentoIsArgb, new Point(posicionFragmento.X, posicionFragmento.Y));
+        }
+        public static unsafe void SetFragment(byte* bmpTotalInicio, Size sizeTotal, bool bmpTotalIsArgb, byte* bmpFragmentoInicio, Size sizeFragment, bool bmpFragmentoIsArgb, System.Drawing.Point posicionFragmento)
+        {
+
+            SetFragment(bmpTotalInicio, sizeTotal.Height, sizeTotal.Width, bmpTotalIsArgb, bmpFragmentoInicio, sizeFragment.Height, sizeFragment.Width, bmpFragmentoIsArgb, posicionFragmento);
+        }
+        #endregion
         public static unsafe void SetFragment(byte* bmpTotalInicio, int alturaBmpTotal, int anchuraBmpTotal, bool bmpTotalIsArgb, byte* bmpFragmentoInicio, int alturaBmpFragmento, int anchuraBmpFragmento, bool bmpFragmentoIsArgb, System.Drawing.Point posicionFragmento)
         {
             #region Variables
@@ -265,12 +362,11 @@ namespace Gabriel.Cat.S.Drawing
             const byte TRANSPARENTE = 0x0;
             const int RGB = 3;
             const int ARGB = RGB + 1;
-            const int R = 0, G = R + 1, B = G + 1, A = B + 1;
             Color aux;
             byte* ptSinTransparencia;
             for (int j = 0; j < totalPixelesLinea; j++)
             {
-                ptSinTransparencia = ptrBmpFragmento + A;
+                ptSinTransparencia = ptrBmpFragmento + Pixel.A;
                 //pongo cada pixel
                 if (*ptSinTransparencia == SINTRANSPARENCIA)
                 {
@@ -287,11 +383,11 @@ namespace Gabriel.Cat.S.Drawing
                     if (*ptSinTransparencia != TRANSPARENTE)//si no es transparente es que tengo que mezclarlo sino es que lo tengo que saltar :D
                     {
                         //tengo que mezclarlo
-                        aux = MezclaPixels(*(ptrBmpTotal + R), *(ptrBmpTotal + G), *(ptrBmpTotal + B), SINTRANSPARENCIA, *(ptrBmpFragmento + R), *(ptrBmpFragmento + G), *(ptrBmpFragmento + B), *(ptrBmpFragmento + A));
+                        aux = MezclaPixels(ptrBmpTotal[Pixel.R], ptrBmpTotal[Pixel.G], ptrBmpTotal[Pixel.B], SINTRANSPARENCIA, ptrBmpFragmento[Pixel.R], ptrBmpFragmento[Pixel.G], ptrBmpFragmento[Pixel.B], ptrBmpFragmento[Pixel.A]);
 
-                        *(ptrBmpTotal + R) = aux.R;
-                        *(ptrBmpTotal + G) = aux.G;
-                        *(ptrBmpTotal + B) = aux.B;
+                        *(ptrBmpTotal + Pixel.R) = aux.R;
+                        *(ptrBmpTotal + Pixel.G) = aux.G;
+                        *(ptrBmpTotal + Pixel.B) = aux.B;
                     }
 
                     ptrBmpTotal += RGB;
@@ -327,14 +423,13 @@ namespace Gabriel.Cat.S.Drawing
             const byte TRANSPARENTE = 0x0;
             const int RGB = 3;
             const int ARGB = RGB + 1;
-            const int R =0, G = R + 1, B = G + 1, A = B + 1;
             Color aux;
             bool isArgb = bytesPixel == ARGB;
             byte* ptSinTransparencia;
             //pongo cada pixel
             for (int j = 0; j < totalPixelesLinea; j++)
             {
-                ptSinTransparencia = ptrBmpFragmento + A;
+                ptSinTransparencia = ptrBmpFragmento + Pixel.A;
                 if (!isArgb || *ptSinTransparencia == SINTRANSPARENCIA)
                 {
                     //pongo cada byte
@@ -350,12 +445,11 @@ namespace Gabriel.Cat.S.Drawing
                     if (*ptSinTransparencia != TRANSPARENTE)
                     {
                         //tengo que mezclarlo
-                        aux = MezclaPixels(*(ptrBmpTotal + R), *(ptrBmpTotal + G), *(ptrBmpTotal + B), *(ptrBmpTotal + A), *(ptrBmpFragmento + R), *(ptrBmpFragmento + G), *(ptrBmpFragmento + B), *(ptrBmpFragmento + A));
-
-                        *(ptrBmpTotal + A) = aux.A;
-                        *(ptrBmpTotal + R) = aux.R;
-                        *(ptrBmpTotal + G) = aux.G;
-                        *(ptrBmpTotal + B) = aux.B;
+                        aux = MezclaPixels(ptrBmpTotal[Pixel.R], ptrBmpTotal[Pixel.G], ptrBmpTotal[Pixel.B], ptrBmpTotal[Pixel.A], ptrBmpFragmento[Pixel.R], ptrBmpFragmento[Pixel.G], ptrBmpFragmento[Pixel.B], ptrBmpFragmento[Pixel.A]);
+                        *(ptrBmpTotal + Pixel.A) = aux.A;
+                        *(ptrBmpTotal + Pixel.R) = aux.R;
+                        *(ptrBmpTotal + Pixel.G) = aux.G;
+                        *(ptrBmpTotal + Pixel.B) = aux.B;
                     }
 
                     ptrBmpTotal += ARGB;
@@ -369,14 +463,20 @@ namespace Gabriel.Cat.S.Drawing
         }
         public static void SetFragment(this Bitmap bmpTotal, Bitmap bmpFragmento, Point posicionFragmento = default)
         {
+            Drawing.ImageBase img = new Drawing.ImageBase(bmpFragmento);
+            SetFragment(bmpTotal, img.Array, bmpFragmento.Size, Drawing.ImageBase.ISARGB, posicionFragmento);
+        }
+        public static void SetFragment(this Bitmap bmpTotal, byte[] bytesFragmento,Size sizeFragmento,bool isArgbFragmento, Point posicionFragmento = default)
+        {
             unsafe
             {
 
-                bmpTotal.TrataBytes((ptrBmpTotal) => {
-                    fixed (byte* ptrBmpFragmento = bmpFragmento.GetBytes())
+                bmpTotal.TrataBytes((ptrBmpTotal) =>
+                {
+                    fixed (byte* ptrBmpFragmento = bytesFragmento)
                     {
 
-                        SetFragment(ptrBmpTotal, bmpTotal.Height, bmpTotal.Width, bmpTotal.IsArgb(), ptrBmpFragmento, bmpFragmento.Height, bmpFragmento.Width, bmpFragmento.IsArgb(), posicionFragmento);
+                        SetFragment(ptrBmpTotal, bmpTotal.Height, bmpTotal.Width, bmpTotal.IsArgb(), ptrBmpFragmento, sizeFragmento.Height, sizeFragmento.Width, isArgbFragmento, posicionFragmento);
 
                     }
 
@@ -386,7 +486,38 @@ namespace Gabriel.Cat.S.Drawing
             }
         }
         #endregion
+        #region Por Hacer
+        //public static Rectangle GetRectangleImgWithoutTransparentMarc(this Bitmap bmp)
+        //{
+        //    int x = 0, y = 0, width = bmp.Width, height = bmp.Height;
+        //    unsafe
+        //    {
+        //        byte*[] ptrs;
+        //        Utilitats.V2.Color* ptColor;
+        //        if (width < height)
+        //        {
+        //            //height
+        //        }
+        //        else
+        //        {
+        //            //width
+        //        }
 
+        //    }
+        //    return new Rectangle(x, y, width, height);
+        //}
+        //public static Bitmap GetImgWithoutTransparentMarc(this Bitmap bmp)
+        //{
+        //    return bmp.Recorta(bmp.GetRectangleImgWithoutTransparentMarc());
+        //}
+        #endregion
+        public static Bitmap Recorta(this Bitmap bmp,Rectangle rctRecorte)
+        {
+            Bitmap bmpSinMarco = new Bitmap(rctRecorte.Width, rctRecorte.Height, Drawing.ImageBase.DefaultPixelFormat);
+            Drawing.ImageBase imgBase = new Drawing.ImageBase(bmp);
+            bmpSinMarco.SetFragment(imgBase.Array,bmp.Size,Drawing.ImageBase.ISARGB, rctRecorte.Location);
+            return bmpSinMarco;
+        }
     }
 
 }

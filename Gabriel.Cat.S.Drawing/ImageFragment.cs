@@ -1,4 +1,5 @@
-﻿using Gabriel.Cat.S.Utilitats;
+﻿using Gabriel.Cat.S.Binaris;
+using Gabriel.Cat.S.Utilitats;
 using System;
 using System.Drawing;
 
@@ -9,6 +10,10 @@ namespace Gabriel.Cat.S.Drawing
         PointZ localizacion;
         ImageBase imagen;
 
+        static ImageFragment()
+        {
+            ElementoBinario.SerializadoresTiposNoSoportados.Add(typeof(ImageFragment).AssemblyQualifiedName, new ImageFragmentBinario());
+        }
         protected ImageFragment()
         { }
         public ImageFragment(Bitmap imagen, int x = 0, int y = 0, int z = 0)

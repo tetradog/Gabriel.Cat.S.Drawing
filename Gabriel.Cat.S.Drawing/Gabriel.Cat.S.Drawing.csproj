@@ -10,7 +10,7 @@
     <RepositoryUrl>https://github.com/tetradog/Gabriel.Cat.S.Drawing</RepositoryUrl>
     <PackageLicenseUrl></PackageLicenseUrl>
     <Copyright>GNU v3</Copyright>
-    <Version>1.0.0.2-preview1.0.4</Version>
+    <Version>1.1.0</Version>
     <Description>Sirve para tratar imagenes fácilmente</Description>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
   </PropertyGroup>

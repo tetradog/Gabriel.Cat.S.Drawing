@@ -15,11 +15,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyCopyrightAttribute("GNU v3")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("Sirve para tratar imagenes fácilmente")]
-[assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.2")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0.2-preview1.0.4")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("1.1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.1.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("Gabriel.Cat.S.Drawing")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Gabriel.Cat.S.Drawing")]
-[assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.2")]
+[assembly: System.Reflection.AssemblyVersionAttribute("1.1.0.0")]
 
 // Generado por la clase WriteCodeFragment de MSBuild.
 

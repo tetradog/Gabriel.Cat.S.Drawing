@@ -9,16 +9,19 @@ namespace Gabriel.Cat.S.Drawing
     {
         public const bool ISARGB = true;
         public static readonly PixelFormat DefaultPixelFormat = PixelFormat.Format32bppArgb;
-        Bitmap bmp;
-
         byte[] bmpArray;
+
+        public ImageBase():this(new Bitmap(1, 1))
+        {
+        }
+
         public ImageBase(Bitmap bmp)
         {
 
             if (bmp == null)
                 throw new NullReferenceException("La imagen no puede ser null");
-            this.bmp = bmp.Clone(new Rectangle(new Point(), bmp.Size), DefaultPixelFormat);//asi todos tienen el mismo PixelFormat :)
-            bmpArray = bmp.GetBytes();
+            Image = bmp.Clone(new Rectangle(new Point(), bmp.Size), DefaultPixelFormat);//asi todos tienen el mismo PixelFormat :)
+            bmpArray = Image.GetBytes();
         }
 
         public virtual byte[] Array
@@ -30,19 +33,13 @@ namespace Gabriel.Cat.S.Drawing
             }
             set
             {
-                bmp.SetBytes(value);
+                Image.SetBytes(value);
                 bmpArray = value;
             }
         }
 
 
-        public Bitmap Image
-        {
-            get
-            {
-                return bmp;
-            }
-        }
+        public Bitmap Image { get; private set; }
 
 
     }
