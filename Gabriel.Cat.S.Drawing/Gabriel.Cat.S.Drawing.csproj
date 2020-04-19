@@ -10,7 +10,7 @@
     <RepositoryUrl>https://github.com/tetradog/Gabriel.Cat.S.Drawing</RepositoryUrl>
     <PackageLicenseUrl></PackageLicenseUrl>
     <Copyright>GNU v3</Copyright>
-    <Version>1.1.1</Version>
+    <Version>1.1.2</Version>
     <Description>Sirve para tratar imagenes fácilmente</Description>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <PackageReleaseNotes>Quito la parte de serializar y la pongo en otro paquete para poder usar Drawing sin tener que arrastrar paquetes sin uso, en la mayoria de casos.</PackageReleaseNotes>
@@ -26,7 +26,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Gabriel.Cat.S.Utilitats" Version="1.0.4.4-preview1.1.5" />
+    <PackageReference Include="Gabriel.Cat.S.Utilitats" Version="1.1.0" />
     <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
   </ItemGroup>
 

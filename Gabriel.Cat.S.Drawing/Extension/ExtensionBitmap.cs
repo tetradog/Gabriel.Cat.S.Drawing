@@ -14,7 +14,7 @@ namespace Gabriel.Cat.S.Extension
         public static Bitmap ChangeColor(this Bitmap bmp, FiltroImagen color)
         {
             const int INCREMENTO = 4;
-            Bitmap bmpResultado = bmp.Clone(PixelFormat.Format32bppArgb);//asi hago que todas las imagenes tengan el mismo formato :D
+            Bitmap bmpResultado = bmp.Clon(PixelFormat.Format32bppArgb);//asi hago que todas las imagenes tengan el mismo formato :D
             TratarImg metodo = null;
 
             unsafe

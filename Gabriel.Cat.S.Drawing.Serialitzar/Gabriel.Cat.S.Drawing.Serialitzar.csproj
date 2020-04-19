@@ -11,8 +11,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Gabriel.Cat.S.Binaris" Version="1.1.3" />
-    <PackageReference Include="Gabriel.Cat.S.Drawing" Version="1.1.1" />
+    <PackageReference Include="Gabriel.Cat.S.Binaris" Version="1.1.4" />
+    <PackageReference Include="Gabriel.Cat.S.Drawing" Version="1.1.2" />
   </ItemGroup>
 
   <ItemGroup>
