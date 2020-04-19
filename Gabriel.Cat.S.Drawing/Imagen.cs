@@ -1,4 +1,4 @@
-﻿using Gabriel.Cat.S.Binaris;
+﻿
 using Gabriel.Cat.S.Extension;
 using Gabriel.Cat.S.Utilitats;
 using System;
@@ -25,10 +25,6 @@ namespace Gabriel.Cat.S.Drawing
         Bitmap bmp;
         byte[] bmpArgb;
 
-        static Collage()
-        {
-            ElementoBinario.SerializadoresTiposNoSoportados.Add(typeof(Collage).AssemblyQualifiedName, new CollageBinario());
-        }
         public Collage()
         {
             bmpArgb = default;
