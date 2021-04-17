@@ -8,15 +8,16 @@
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <Description>Sirve para serializar las clases de Gabriel.Cat.S.Drawing</Description>
+    <Version>1.0.1-Preview1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Gabriel.Cat.S.Binaris" Version="1.1.4" />
-    <PackageReference Include="Gabriel.Cat.S.Drawing" Version="1.1.2" />
+    <PackageReference Include="Gabriel.Cat.S.Binaris" Version="1.1.5-Preview1.0" />
+    <PackageReference Include="Gabriel.Cat.S.Drawing" Version="1.1.3-Preview1" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\Gabriel.Cat.Wpf\LICENSE.txt">
+    <None Include="..\LICENSE.txt">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>

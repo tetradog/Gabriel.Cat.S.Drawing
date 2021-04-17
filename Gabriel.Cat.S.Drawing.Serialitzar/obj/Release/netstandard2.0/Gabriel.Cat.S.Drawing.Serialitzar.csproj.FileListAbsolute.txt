@@ -1,0 +1,9 @@
+C:\Users\tetra\Documents\GitHub\Gabriel.Cat.S.Drawing\Gabriel.Cat.S.Drawing.Serialitzar\bin\Release\netstandard2.0\Gabriel.Cat.S.Drawing.Serialitzar.deps.json
+C:\Users\tetra\Documents\GitHub\Gabriel.Cat.S.Drawing\Gabriel.Cat.S.Drawing.Serialitzar\bin\Release\netstandard2.0\Gabriel.Cat.S.Drawing.Serialitzar.dll
+C:\Users\tetra\Documents\GitHub\Gabriel.Cat.S.Drawing\Gabriel.Cat.S.Drawing.Serialitzar\bin\Release\netstandard2.0\Gabriel.Cat.S.Drawing.Serialitzar.pdb
+C:\Users\tetra\Documents\GitHub\Gabriel.Cat.S.Drawing\Gabriel.Cat.S.Drawing.Serialitzar\obj\Release\netstandard2.0\Gabriel.Cat.S.Drawing.Serialitzar.csprojAssemblyReference.cache
+C:\Users\tetra\Documents\GitHub\Gabriel.Cat.S.Drawing\Gabriel.Cat.S.Drawing.Serialitzar\obj\Release\netstandard2.0\Gabriel.Cat.S.Drawing.Serialitzar.AssemblyInfoInputs.cache
+C:\Users\tetra\Documents\GitHub\Gabriel.Cat.S.Drawing\Gabriel.Cat.S.Drawing.Serialitzar\obj\Release\netstandard2.0\Gabriel.Cat.S.Drawing.Serialitzar.AssemblyInfo.cs
+C:\Users\tetra\Documents\GitHub\Gabriel.Cat.S.Drawing\Gabriel.Cat.S.Drawing.Serialitzar\obj\Release\netstandard2.0\Gabriel.Cat.S.Drawing.Serialitzar.csproj.CoreCompileInputs.cache
+C:\Users\tetra\Documents\GitHub\Gabriel.Cat.S.Drawing\Gabriel.Cat.S.Drawing.Serialitzar\obj\Release\netstandard2.0\Gabriel.Cat.S.Drawing.Serialitzar.dll
+C:\Users\tetra\Documents\GitHub\Gabriel.Cat.S.Drawing\Gabriel.Cat.S.Drawing.Serialitzar\obj\Release\netstandard2.0\Gabriel.Cat.S.Drawing.Serialitzar.pdb

@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "fLDOu5PnPa3FJqnWRZPRULnAVkiJUZ3vhgnT1PlLQhrsCBa7jIq1d3lke21n03y/nhs7SsjxSCAqCNErRwjjOQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\tetra\\Documents\\GitHub\\Gabriel.Cat.S.Drawing\\Gabriel.Cat.S.Drawing\\Gabriel.Cat.S.Drawing.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\tetra\\.nuget\\packages\\gabriel.cat.s.utilitats\\1.1.5.4\\gabriel.cat.s.utilitats.1.1.5.4.nupkg.sha512",
+    "C:\\Users\\tetra\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\tetra\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\tetra\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\tetra\\.nuget\\packages\\system.drawing.common\\4.7.0\\system.drawing.common.4.7.0.nupkg.sha512"
+  ],
+  "logs": []
+}

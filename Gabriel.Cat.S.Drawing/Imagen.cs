@@ -225,9 +225,9 @@ namespace Gabriel.Cat.S.Drawing
                 Base = new ImageBase();
 
             rctBase = new Rectangle(GetMinLocation((f) => f.Location.X), GetMinLocation((f) => f.Location.Y), Base.Image.Width, Base.Image.Height);
+    
 
-
-            bmpTotal.TrataBytes((MetodoTratarByteArray)((bmpTotalArray) =>
+            bmpTotal.TrataBytes((MetodoTratarUnmanagedTypeArray<byte>)((bmpTotalArray) =>
                 {
 
                     Imagen.SetFragment(bmpTotalArray, bmpTotal.Size, ImageBase.ISARGB, Base.Array, Base.Image.Size, ImageBase.ISARGB, rctBase.Location);

@@ -1,0 +1,9 @@
+C:\Users\tetra\Documents\GitHub\Gabriel.Cat.S.Drawing\Gabriel.Cat.S.Drawing\bin\Release\netstandard2.0\Gabriel.Cat.S.Drawing.deps.json
+C:\Users\tetra\Documents\GitHub\Gabriel.Cat.S.Drawing\Gabriel.Cat.S.Drawing\bin\Release\netstandard2.0\Gabriel.Cat.S.Drawing.dll
+C:\Users\tetra\Documents\GitHub\Gabriel.Cat.S.Drawing\Gabriel.Cat.S.Drawing\bin\Release\netstandard2.0\Gabriel.Cat.S.Drawing.pdb
+C:\Users\tetra\Documents\GitHub\Gabriel.Cat.S.Drawing\Gabriel.Cat.S.Drawing\obj\Release\netstandard2.0\Gabriel.Cat.S.Drawing.AssemblyInfoInputs.cache
+C:\Users\tetra\Documents\GitHub\Gabriel.Cat.S.Drawing\Gabriel.Cat.S.Drawing\obj\Release\netstandard2.0\Gabriel.Cat.S.Drawing.AssemblyInfo.cs
+C:\Users\tetra\Documents\GitHub\Gabriel.Cat.S.Drawing\Gabriel.Cat.S.Drawing\obj\Release\netstandard2.0\Gabriel.Cat.S.Drawing.csproj.CoreCompileInputs.cache
+C:\Users\tetra\Documents\GitHub\Gabriel.Cat.S.Drawing\Gabriel.Cat.S.Drawing\obj\Release\netstandard2.0\Gabriel.Cat.S.Drawing.dll
+C:\Users\tetra\Documents\GitHub\Gabriel.Cat.S.Drawing\Gabriel.Cat.S.Drawing\obj\Release\netstandard2.0\Gabriel.Cat.S.Drawing.pdb
+C:\Users\tetra\Documents\GitHub\Gabriel.Cat.S.Drawing\Gabriel.Cat.S.Drawing\obj\Release\netstandard2.0\Gabriel.Cat.S.Drawing.csprojAssemblyReference.cache

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Gabriel.Cat.S.Drawing.Serialitzar</id>
+    <version>1.0.0</version>
+    <authors>Gabriel.Cat.Developer</authors>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="file">LICENSE.txt</license>
+    <licenseUrl>https://aka.ms/deprecateLicenseUrl</licenseUrl>
+    <description>Sirve para serializar las clases de Gabriel.Cat.S.Drawing</description>
+    <dependencies>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="Gabriel.Cat.S.Binaris" version="1.1.5-Preview1.0" exclude="Build,Analyzers" />
+        <dependency id="Gabriel.Cat.S.Drawing" version="1.1.2" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Users\tetra\Documents\GitHub\Gabriel.Cat.S.Drawing\Gabriel.Cat.S.Drawing.Serialitzar\bin\Release\netstandard2.0\Gabriel.Cat.S.Drawing.Serialitzar.dll" target="lib\netstandard2.0\Gabriel.Cat.S.Drawing.Serialitzar.dll" />
+    <file src="C:\Users\tetra\Documents\GitHub\Gabriel.Cat.S.Drawing\LICENSE.txt" target="LICENSE.txt" />
+  </files>
+</package>
