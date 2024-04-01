@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCopyrightAttribute("GNU v3")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("Sirve para tratar imagenes fácilmente")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.1.3.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.1.3-Preview1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.1.3-Preview1+db59abb06ae4742dd31417274a9f25505ddd57af")]
 [assembly: System.Reflection.AssemblyProductAttribute("Gabriel.Cat.S.Drawing")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Gabriel.Cat.S.Drawing")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.1.3.0")]

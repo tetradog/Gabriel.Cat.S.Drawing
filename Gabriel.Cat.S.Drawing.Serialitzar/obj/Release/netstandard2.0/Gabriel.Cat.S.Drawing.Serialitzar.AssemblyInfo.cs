@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("Sirve para serializar las clases de Gabriel.Cat.S.Drawing")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.1.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.1-Preview1.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.1-Preview1.0+db59abb06ae4742dd31417274a9f25505ddd57af")]
 [assembly: System.Reflection.AssemblyProductAttribute("Gabriel.Cat.S.Drawing.Serialitzar")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Gabriel.Cat.S.Drawing.Serialitzar")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.1.0")]

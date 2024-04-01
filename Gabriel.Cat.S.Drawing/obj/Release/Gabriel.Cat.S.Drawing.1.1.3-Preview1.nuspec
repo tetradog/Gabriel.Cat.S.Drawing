@@ -11,16 +11,16 @@
     <description>Sirve para tratar imagenes fácilmente</description>
     <releaseNotes>Quito la parte de serializar y la pongo en otro paquete para poder usar Drawing sin tener que arrastrar paquetes sin uso, en la mayoria de casos.</releaseNotes>
     <copyright>GNU v3</copyright>
-    <repository url="https://github.com/tetradog/Gabriel.Cat.S.Drawing" />
+    <repository type="git" url="https://github.com/tetradog/Gabriel.Cat.S.Drawing" commit="db59abb06ae4742dd31417274a9f25505ddd57af" />
     <dependencies>
-      <group targetFramework=".NETStandard2.0">
-        <dependency id="Gabriel.Cat.S.Utilitats" version="1.1.5.4" exclude="Build,Analyzers" />
-        <dependency id="System.Drawing.Common" version="4.7.0" exclude="Build,Analyzers" />
+      <group targetFramework=".NETStandard2.1">
+        <dependency id="Gabriel.Cat.S.Utilitats" version="1.2.7" exclude="Build,Analyzers" />
+        <dependency id="System.Drawing.Common" version="8.0.3" exclude="Build,Analyzers" />
       </group>
     </dependencies>
   </metadata>
   <files>
-    <file src="C:\Users\tetra\Documents\GitHub\Gabriel.Cat.S.Drawing\Gabriel.Cat.S.Drawing\bin\Release\netstandard2.0\Gabriel.Cat.S.Drawing.dll" target="lib\netstandard2.0\Gabriel.Cat.S.Drawing.dll" />
-    <file src="C:\Users\tetra\Documents\GitHub\Gabriel.Cat.S.Drawing\LICENSE.txt" target="LICENSE.txt" />
+    <file src="C:\Users\gabri\Desktop\Framework\Gabriel.Cat.S.Drawing\Gabriel.Cat.S.Drawing\bin\Release\netstandard2.1\Gabriel.Cat.S.Drawing.dll" target="lib\netstandard2.1\Gabriel.Cat.S.Drawing.dll" />
+    <file src="C:\Users\gabri\Desktop\Framework\Gabriel.Cat.S.Drawing\LICENSE.txt" target="LICENSE.txt" />
   </files>
 </package>

@@ -24,7 +24,7 @@ namespace Gabriel.Cat.S.Binaris
         }
         protected override object JGetObject(MemoryStream bytes)
         {
-            return new Collage(((object[])base.GetObject(bytes)).Casting<ImageFragment>());
+            return new Collage(((object[])base.GetObject(bytes)).Casting<ImageFragment>().ToArray());
         }
     }
 }
