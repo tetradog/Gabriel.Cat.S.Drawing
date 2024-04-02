@@ -22,11 +22,15 @@ namespace Gabriel.Cat.S.Drawing
         {
 
         }
-        public ImageFragment(Bitmap imagen, PointZ localizacion)
+        public ImageFragment(Bitmap imagen, PointZ localizacion):this(new ImageBase(imagen),localizacion)
+        {
+       
+        }
+        public ImageFragment(ImageBase imagen, PointZ localizacion)
         {
             if (imagen == null)
                 throw new NullReferenceException("La imagen no puede ser null");
-            this.imagen = new ImageBase(imagen);
+            this.imagen = imagen;
             Location = localizacion;
             IsVisible = true;
         }
@@ -53,6 +57,13 @@ namespace Gabriel.Cat.S.Drawing
             get
             {
                 return imagen.Image;
+            }
+        }
+        public virtual ImageBase ImageBase
+        {
+            get
+            {
+                return imagen;
             }
         }
 

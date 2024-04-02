@@ -4,6 +4,7 @@ using Gabriel.Cat.S.Utilitats;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Text;
 
@@ -95,18 +96,19 @@ namespace Gabriel.Cat.S.Drawing
         /// <param name="localizacion">localización en la imagen</param>
         /// <param name="capa">produndidad a la que esta</param>
         /// <returns>devuelve null si no lo a podido añadir</returns>
-        public ImageFragment Add(Bitmap imatge, Point localizacio, int capa = 0)
+        public ImageFragment Add([NotNull]Bitmap imatge, Point localizacio, int capa = 0)
         {
             return Add(imatge, localizacio.X, localizacio.Y, capa);
         }
-        public ImageFragment Add(Bitmap imagen, int x = 0, int y = 0, int z = 0)
+        public ImageFragment Add([NotNull]Bitmap imagen, int x = 0, int y = 0, int z = 0)
         {
-            if (imagen == null)
-                throw new ArgumentNullException("imagen", "Se necesita una imagen");
-
-            ImageFragment fragment = null;
+            return Add(new ImageBase(imagen), x, y, z);
+        }
+        public ImageFragment Add([NotNull]ImageBase imagen, int x = 0, int y = 0, int z = 0)
+        {
             PointZ location = new PointZ(x, y, z);
-            fragment = new ImageFragment(imagen, location);
+            ImageFragment fragment =  new ImageFragment(imagen, location);
+
             fragments.Add(fragment);
 
 
@@ -141,24 +143,31 @@ namespace Gabriel.Cat.S.Drawing
         {
             return GetFragment(location.X, location.Y, location.Z);
         }
+
+        public void Sort()
+        {
+            fragments.SortByQuickSort();
+        }
         public ImageFragment GetFragment(int x, int y, int z)
         {
+     
             List<ImageFragment> fragmentosCapaZero = new List<ImageFragment>();
             bool acabado = false;
             int pos = 0;
             Rectangle rectangle;
             ImageFragment fragmento = null;
-
-            fragments.SortByBubble();
+          
+          
             while (pos < this.fragments.Count && !acabado)
             {
 
-                if (this.fragments[pos].Location.Z > z)
-                    acabado = true;
-                else if (this.fragments[pos].Location.Z == z)
+                 if (this.fragments[pos].Location.Z == z)
                     fragmentosCapaZero.Add(this.fragments[pos]);
-                pos++;
-            }
+                 else if (this.fragments[pos].Location.Z > z)
+                    acabado = true;
+                
+                    pos++;
+            } 
             for (int i = 0; i < fragmentosCapaZero.Count && fragmento == null; i++)
             {
                 rectangle = new Rectangle(fragmentosCapaZero[i].Location.X, fragmentosCapaZero[i].Location.Y, fragmentosCapaZero[i].Image.Width, fragmentosCapaZero[i].Image.Height);
@@ -166,6 +175,7 @@ namespace Gabriel.Cat.S.Drawing
                     fragmento = fragmentosCapaZero[i];
 
             }
+
             return fragmento;
         }
         public ImageFragment[] GetFragments(PointZ location)
